@@ -42,7 +42,7 @@ $(document).ready(function(){
         var keyword = $(this).attr("data-name");
 
         var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-        keyword + "&api_key=800ZAvdGZmzRlJARbz2BP0SqRUfB04b4&limit=5";
+        keyword + "&api_key=800ZAvdGZmzRlJARbz2BP0SqRUfB04b4&limit=10";
 
         $.ajax({
             url: queryURL,
@@ -58,7 +58,15 @@ $(document).ready(function(){
                 var p = $("<p>").text("Rating: " + rating);
 
                 var gif = $("<img>");
-                gif.attr("src", results[i].images.fixed_height.url)
+                var stillUrl = results[i].images.fixed_height_still.url
+                var movingUrl = results[i].images.fixed_height.url
+
+                gif.attr("src", stillUrl)
+                gif.attr("class", "gif-dump")
+                gif.attr("data-gif", movingUrl)
+                gif.attr("data-index", i)
+                gif.attr("data-still", stillUrl)
+                
                 
                 gifDiv.prepend(p)
                 gifDiv.prepend(gif)
@@ -66,11 +74,28 @@ $(document).ready(function(){
                 $("#gifBox").prepend(gifDiv);
             }
         })
-        console.log("buttons work")
-        console.log($(this).attr("data-name"))
+          
     }
+
     
     $(document).on("click", ".genButt", gifDump);
+
+    $(document).on("click", ".gif-dump", function(event){
+        console.log("gif click")
+
+        var currentIn = $(this).attr("data-index");
+        var moveUrl = $(this).attr("data-gif");
+        var stillUrl = $(this).attr("data-still");
+        console.log(currentIn);
+        
+        if ($(this).attr("src") == stillUrl) {
+            $(this).attr("src", moveUrl);
+        }
+        else if ($(this).attr("src") == moveUrl) {
+            $(this).attr("src", stillUrl);
+    };   
+
+    })
 
     renderButtons();
 
