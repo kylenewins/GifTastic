@@ -2,8 +2,6 @@ $(document).ready(function(){
     //array of the gif buttons
     var gifButtons = ["Danny Devito", "Nicholas Cage", "Frogs", "Naruto"]
 
-    renderButtons();
-
     // a function that renders the buttons, is run once at the beginning and then 
     // every time the add gif button is clicked
     function renderButtons(){
@@ -38,7 +36,7 @@ $(document).ready(function(){
             renderButtons();
     });
 
-    $(".genButt").on("click", function(){
+    function gifDump(){
         $("#gifBox").empty();
 
         var keyword = $(this).attr("data-name");
@@ -70,8 +68,11 @@ $(document).ready(function(){
         })
         console.log("buttons work")
         console.log($(this).attr("data-name"))
-    })
-  
+    }
+    
+    $(document).on("click", ".genButt", gifDump);
+
+    renderButtons();
 
     });
     
