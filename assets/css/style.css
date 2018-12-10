@@ -8,15 +8,16 @@ body{
 }
 
 #gifBox{
-    background-color: whitesmoke;
-    border: 3px solid black;
+    color: whitesmoke;
     margin:5px;
+  
 }
 
 #formBox {
     background-color:whitesmoke;
     border: 3px solid black;
     padding: 5px;
+    height:200px;
 
 }
 
@@ -24,6 +25,6 @@ body{
     margin:5px;
 }
 
-.buttons{
+.genButt{
     margin: 10px;
 }
