@@ -25,6 +25,7 @@ $(document).ready(function(){
 
         // This function handles events where the add gif button is clicked
     $("#add-gif").on("click", function(event) {
+        //prevents default submit action of the button
             event.preventDefault();
             // This line of code will grab the input from the textbox
             var gif = $("#user-input").val().trim();
@@ -87,7 +88,7 @@ $(document).ready(function(){
         var moveUrl = $(this).attr("data-gif");
         var stillUrl = $(this).attr("data-still");
         console.log(currentIn);
-        
+
         if ($(this).attr("src") == stillUrl) {
             $(this).attr("src", moveUrl);
         }
